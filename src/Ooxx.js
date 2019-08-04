@@ -1,13 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
+import SvgLine from './SvgLine';
 
 const CheckerBoard = styled.div`
-  width: 300px;
-  height: 300px;
-  margin: 0 auto;
+  position: relative;
   display: flex;
   flex-flow: row wrap;
   align-content: flex-start;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
 `;
 
 const BoxBody = styled.span`
@@ -35,6 +37,7 @@ const Player = styled.span`
 
 const PlayerSpan = styled(Player)`
   display: inline-block;
+  color: #85bf21;
   font-weight: bold;
   font-size: 2rem;
 `;
@@ -131,9 +134,15 @@ class Ooxx extends Component {
               </BoxBody>
             );
           })}
+          {winner !== null ? (
+            <SvgLine cuurentBoardState={boxArray} whosWinner={winner} />
+          ) : null}
         </CheckerBoard>
         <Player>
-          現在是誰在玩：<PlayerSpan>{giveOx(whichPlay)}</PlayerSpan>
+          現在是誰在玩：
+          <PlayerSpan>
+            {winner !== null ? '結束了啦！' : giveOx(whichPlay)}
+          </PlayerSpan>
         </Player>
         <Player>
           目前贏家是：<PlayerSpan>{giveOx(winner)}</PlayerSpan>
