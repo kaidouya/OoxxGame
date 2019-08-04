@@ -7,8 +7,8 @@ const CheckerBoard = styled.div`
   display: flex;
   flex-flow: row wrap;
   align-content: flex-start;
-  width: 300px;
-  height: 300px;
+  width: 450px;
+  height: 450px;
   margin: 0 auto;
 `;
 
@@ -42,7 +42,16 @@ const PlayerSpan = styled(Player)`
   font-size: 2rem;
 `;
 
-// 連線成功
+const ResetBtn = styled.button`
+  display: block;
+  margin: 20px auto 0;
+  width: 300px;
+  height: 50px;
+  color: #555;
+  border-radius: 15px;
+`;
+
+// 成功連線有哪些組合
 const winnerLine = [
   [0, 1, 2],
   [3, 4, 5],
@@ -74,7 +83,8 @@ class Ooxx extends Component {
     this.state = {
       boxArray: [0, 0, 0, 0, 0, 0, 0, 0, 0],
       whichPlay: 1,
-      winner: null
+      winner: null,
+      winnerGroup: [] // 獲勝組合
     };
   }
 
@@ -95,27 +105,42 @@ class Ooxx extends Component {
     });
   }
 
-  // 檢查是否已經出現贏家
+  // 檢查是否已經出現贏家 + 並且記錄是哪種組合所勝出
   whosWinner() {
     const grid = this.state.boxArray;
     for (const items of winnerLine) {
       const [i, j, k] = items;
       if (grid[i] === grid[j] && grid[j] === grid[k] && grid[i] !== 0) {
-        return grid[i];
+        return {
+          w1: grid[i],
+          w2: [i, j, k]
+        };
       }
     }
     return null;
   }
 
+  // 重新開始
+  resetBtn = () => {
+    this.setState(preState => {
+      return {
+        boxArray: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        winner: null
+      };
+    });
+  };
+
   // 當更新時檢查是否已經結束
   componentDidUpdate(prevProps, preState) {
     // 防止無窮迴圈
     if (preState.boxArray !== this.state.boxArray) {
-      const getWinner = this.whosWinner();
-      if (getWinner !== null) {
+      // 確認是否有贏家出現
+      const getWinnerInfo = this.whosWinner();
+      if (getWinnerInfo !== null) {
         this.setState(preState => {
           return {
-            winner: getWinner
+            winner: getWinnerInfo.w1,
+            winnerGroup: getWinnerInfo.w2
           };
         });
       }
@@ -123,7 +148,7 @@ class Ooxx extends Component {
   }
 
   render() {
-    const { boxArray, whichPlay, winner } = this.state;
+    const { boxArray, whichPlay, winner, winnerGroup } = this.state;
     return (
       <Fragment>
         <CheckerBoard>
@@ -134,9 +159,7 @@ class Ooxx extends Component {
               </BoxBody>
             );
           })}
-          {winner !== null ? (
-            <SvgLine cuurentBoardState={boxArray} whosWinner={winner} />
-          ) : null}
+          {winner !== null ? <SvgLine winnerGroup={winnerGroup} /> : null}
         </CheckerBoard>
         <Player>
           現在是誰在玩：
@@ -147,6 +170,7 @@ class Ooxx extends Component {
         <Player>
           目前贏家是：<PlayerSpan>{giveOx(winner)}</PlayerSpan>
         </Player>
+        <ResetBtn onClick={this.resetBtn}>重新開始</ResetBtn>
       </Fragment>
     );
   }
