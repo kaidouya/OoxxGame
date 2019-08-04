@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/OoxxGame/static/js/main.0e525d94.chunk.js",
+    "main.js.map": "/OoxxGame/static/js/main.0e525d94.chunk.js.map",
+    "runtime~main.js": "/OoxxGame/static/js/runtime~main.036ec19e.js",
+    "runtime~main.js.map": "/OoxxGame/static/js/runtime~main.036ec19e.js.map",
+    "static/js/2.1093115a.chunk.js": "/OoxxGame/static/js/2.1093115a.chunk.js",
+    "static/js/2.1093115a.chunk.js.map": "/OoxxGame/static/js/2.1093115a.chunk.js.map",
+    "index.html": "/OoxxGame/index.html",
+    "precache-manifest.7a483a05c4c7f223a1b0b42017c4dd2d.js": "/OoxxGame/precache-manifest.7a483a05c4c7f223a1b0b42017c4dd2d.js",
+    "service-worker.js": "/OoxxGame/service-worker.js"
+  }
+}
