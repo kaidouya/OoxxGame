@@ -162,7 +162,7 @@ class Ooxx extends Component {
           {winner !== null ? <SvgLine winnerGroup={winnerGroup} /> : null}
         </CheckerBoard>
         <Player>
-          現在是誰在玩：我測試
+          現在是誰在玩：
           <PlayerSpan>
             {winner !== null ? "結束了啦！" : giveOx(whichPlay)}
           </PlayerSpan>
