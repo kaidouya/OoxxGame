@@ -163,6 +163,7 @@ class Ooxx extends Component {
         </CheckerBoard>
         <Player>
           現在是誰在玩：
+          <span>I'm Master branch</span>
           <PlayerSpan>
             {winner !== null ? "結束了啦！" : giveOx(whichPlay)}
           </PlayerSpan>
