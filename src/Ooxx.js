@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import styled from 'styled-components';
-import SvgLine from './SvgLine';
+import React, { Component, Fragment } from "react";
+import styled from "styled-components";
+import SvgLine from "./SvgLine";
 
 const CheckerBoard = styled.div`
   position: relative;
@@ -60,20 +60,20 @@ const winnerLine = [
   [1, 4, 7],
   [2, 5, 8],
   [0, 4, 8],
-  [2, 4, 6]
+  [2, 4, 6],
 ];
 
 // 丟值函式
-const giveOx = n => {
+const giveOx = (n) => {
   switch (n) {
     case 0:
-      return '';
+      return "";
     case 1:
-      return '0';
+      return "0";
     case -1:
-      return 'X';
+      return "X";
     default:
-      return '';
+      return "";
   }
 };
 
@@ -84,7 +84,7 @@ class Ooxx extends Component {
       boxArray: [0, 0, 0, 0, 0, 0, 0, 0, 0],
       whichPlay: 1,
       winner: null,
-      winnerGroup: [] // 獲勝組合
+      winnerGroup: [], // 獲勝組合
     };
   }
 
@@ -97,10 +97,10 @@ class Ooxx extends Component {
       return;
     }
     newBoxArray[index] = this.state.whichPlay;
-    this.setState(preState => {
+    this.setState((preState) => {
       return {
         boxArray: newBoxArray,
-        whichPlay: -this.state.whichPlay
+        whichPlay: -this.state.whichPlay,
       };
     });
   }
@@ -113,7 +113,7 @@ class Ooxx extends Component {
       if (grid[i] === grid[j] && grid[j] === grid[k] && grid[i] !== 0) {
         return {
           w1: grid[i],
-          w2: [i, j, k]
+          w2: [i, j, k],
         };
       }
     }
@@ -122,10 +122,10 @@ class Ooxx extends Component {
 
   // 重新開始
   resetBtn = () => {
-    this.setState(preState => {
+    this.setState((preState) => {
       return {
         boxArray: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        winner: null
+        winner: null,
       };
     });
   };
@@ -137,10 +137,10 @@ class Ooxx extends Component {
       // 確認是否有贏家出現
       const getWinnerInfo = this.whosWinner();
       if (getWinnerInfo !== null) {
-        this.setState(preState => {
+        this.setState((preState) => {
           return {
             winner: getWinnerInfo.w1,
-            winnerGroup: getWinnerInfo.w2
+            winnerGroup: getWinnerInfo.w2,
           };
         });
       }
@@ -162,9 +162,9 @@ class Ooxx extends Component {
           {winner !== null ? <SvgLine winnerGroup={winnerGroup} /> : null}
         </CheckerBoard>
         <Player>
-          現在是誰在玩：
+          現在是誰在玩：我測試
           <PlayerSpan>
-            {winner !== null ? '結束了啦！' : giveOx(whichPlay)}
+            {winner !== null ? "結束了啦！" : giveOx(whichPlay)}
           </PlayerSpan>
         </Player>
         <Player>
