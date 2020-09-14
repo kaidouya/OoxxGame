@@ -161,6 +161,7 @@ class Ooxx extends Component {
           })}
           {winner !== null ? <SvgLine winnerGroup={winnerGroup} /> : null}
         </CheckerBoard>
+        <span>我來測試ＤＥＶ</span>
         <Player>
           現在是誰在玩：
           <PlayerSpan>
