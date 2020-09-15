@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from "react";
-import styled from "styled-components";
-import SvgLine from "./SvgLine";
+import React, { Component, Fragment } from 'react';
+import styled from 'styled-components';
+import SvgLine from './SvgLine';
 
 const CheckerBoard = styled.div`
   position: relative;
@@ -67,13 +67,13 @@ const winnerLine = [
 const giveOx = (n) => {
   switch (n) {
     case 0:
-      return "";
+      return '';
     case 1:
-      return "0";
+      return '0';
     case -1:
-      return "X";
+      return 'X';
     default:
-      return "";
+      return '';
   }
 };
 
@@ -161,11 +161,10 @@ class Ooxx extends Component {
           })}
           {winner !== null ? <SvgLine winnerGroup={winnerGroup} /> : null}
         </CheckerBoard>
-        <span>我來測試ＤＥＶ</span>
         <Player>
           現在是誰在玩：
           <PlayerSpan>
-            {winner !== null ? "結束了啦！" : giveOx(whichPlay)}
+            {winner !== null ? '結束了啦！' : giveOx(whichPlay)}
           </PlayerSpan>
         </Player>
         <Player>

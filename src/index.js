@@ -1,5 +1,6 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import Ooxx from "./Ooxx";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Ooxx from './Ooxx';
+import NewOoxx from './NewOoxx';
 
-ReactDOM.render(<Ooxx />, document.getElementById("root"));
+ReactDOM.render(<NewOoxx />, document.getElementById('root'));
